@@ -1,0 +1,3 @@
+#!/bin/bash
+
+printf "\x60" | xclip -sel clip

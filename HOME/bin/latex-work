@@ -1,0 +1,37 @@
+#!/bin/bash
+
+set -ueo pipefail
+
+
+# Converts tex file to pdf
+generate() {
+    pdflatex "$texName"
+}
+
+# Outputs timestamp of tex file
+get_time() {
+    stat --format %x "$texName"
+}
+
+cleanup() {
+    rm *.log *.aux
+}
+
+
+texName="$1"
+baseName=$( printf "$texName" | cut -d . -f 1 )
+pdfName="$baseName".pdf
+
+trap cleanup SIGINT
+
+generate
+nohup evince "$pdfName" >/dev/null 2>/dev/null &
+
+lastTime="$( get_time )"
+while true; do
+    if [ "$lastTime" != "$( get_time )" ]; then
+        lastTime="$( get_time )"
+        generate || :
+    fi
+    sleep 1
+done

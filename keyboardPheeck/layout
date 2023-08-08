@@ -1,0 +1,23 @@
+<layout>
+      <configItem>
+        <name>cz-pheeck</name>
+        <shortDescription>CzePheeck</shortDescription>
+        <description>Czech Programming Pheeck</description>
+        <languageList><iso639Id>cze</iso639Id></languageList>
+      </configItem>
+      <variantList>
+        <variant>
+          <configItem>
+            <name>basic</name>
+            <description>Eng+CzSymb</description>
+          </configItem>
+        </variant>
+        <variant>
+          <configItem>
+            <name>mac</name>
+            <description>Eng+CzSymb-Mac</description>
+          </configItem>
+        </variant>
+      </variantList>
+    </layout>
+    <layout>

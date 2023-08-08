@@ -1,0 +1,27 @@
+Počítač umřel vybitím/přehřátím. Byl zapnutý v tašce.
+
+
+- - - - -
+
+
+dracut Warning: Could not boot.
+
+dracut Warning: "/dev/disk/by-uuid/ee3f2cff<něco>" does not exist
+
+...
+
+Dropping to debug shell.
+
+
+- - - - -
+
+
+- Zkusím nabootovat void live image
+
+- V /dev/disk/by-uuid jsou jen 3 záznamy -- 1 je flashka, druhý je loop a třetí
+  má ~33mb a není ext4, ext3 ani exfat
+- Ale grub ukazuje (hd0) (hd1) (hd1,gpt6) (hd1,gpt5) ... (hd1,gpt1)
+- A v BIOSu je záznam void_grub s HD(1,GPT,E65<něco>)
+  - A grub se spustí!
+
+- Tak nakonec když jsem vypnul RAID v UEFI, linux se nabootoval!

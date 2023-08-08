@@ -1,0 +1,122 @@
+- Musel jsem k bspwm jeste nainstalovat balicek "sxhkd"
+- Misto "dmenu" instaluji "rofi"
+
+xbps-remove -oO
+odinstaluje programy, ktere na pocitaci uz k nicemu nejsou
+jeste bych to mel prozkoumat
+
+moje konfiguraky:
+- .inputrc
+- .vimrc
+- .bashrc
+- .config/bspwm/bspwmrc
+- .config/sxhkd/sxhkdrc
+- Documents/wallpaper
+- /etc/X11/xorg.conf.d/
+- cz-pheeck
+- ~/bin/
+- .vim/
+- /root/.bashrc
+- /root/.inputrc
+
+- Kamo polybar je fajn
+- feh program na wallpaper
+  https://wallheaven.cc/w/od6e59
+- alacritty terminal emulator
+
+feh --bg-center picture.jpg
+
+- misto comptonu mam "picom"
+
+- odted dal uz asi nemusim delat denik
+- akorat jeste nakonfiguruju touchpad pres libinput (synaptics asi ne)
+- a nainstaluju tlp a k nemu 
+- uspava se pomci zzz
+- jo a taky zvuk budu muset vyresit
+- jo a taky tlacitka na zvuk, backlight a tak
+
+calcurse - ncurses kalendar
+ncdu - ncurses disk usage
+
+- tapping jsem nastavil pomoci /etc/X11/xorg.conf.d/30-touchpad.conf
+  - viz arch wiki o libinput (synaptics asi nemam)
+  - btw "natural scrolling" = invertovane applovske scrolling
+
+https://wiki.voidlinux.org/Post_Installation
+- Proc jsem o tomhle nevedel!
+- Jsou tam věci, na které bych se ještě měl podívat
+
+- Nastaveni keyboard layoutu pro TTY a xorg jsou separatni
+- kámo já vůbec nemusim dělat něco s evdev rules asdfk
+  - prostě nakopíruju svojí cz-pheeck klávesnici do /usr/share/X11/xkb/rules
+  - a pak můžu použít "setxkbmap cz-pheeck"
+
+nainstaloval jsem discord podle aur PKGBUILDu
+dep: libnotify, nspr, nss
+nenašel jsem: libxss, gtk3
+https://github.com/archlinux/svntogit-community/blob/packages/discord/trunk/PKGBUILD
+- stěžuje si to na corrupt install (možná license?) (můžu zkusit nainstalovat z void packages)
+
+
+!!! řeším problém, kdy okna na workspacu zamrznou a musím je killnout
+- a někdy během toho zamrznou i okna na dalších workspacech
+- vypadalo to, že se to stává na workspacech s prohlížeči (firefox, qutebrowser)
+  - už se mi to ale stalo i když jsem měl workspace s dvěma terminály a firefox byl na jiném workspacu
+- s workspacem s libreoffice calcem se to nestává, ale na něm taky moc nedělám)
+- stává se to při běžném používání několikrát denně
+
+https://bbs.archlinux.org/viewtopic.php?id=237348
+- patrik to prý taky řešil a poradil tenhle link
+- taky posílal svoje grub boot options:
+/etc/default/grub
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash mds=full,nosmt i915.enable_psr=0"
+- mds=full,nosmt je ochrana proti nějakému mds exploitu
+- další věc, kterou vyzkouším je dát ten enable_psr=0 parametr (ale to by mělo pomoct se screen stutterem, ne mým problémem)
+
+zatím zkouším podle toho linku zakázat intel driver akceleraci v /etc/X11/xorg.conf.d/20-intel.conf
+actually spíš podle https://wiki.archlinux.org/title/intel_graphics
+- ugh, já to nezakázal
+- tak znova a rovnou dávám DRI 2
+- a taky vypínám "picom" compositor
+- a taky si dám mds=full,nosmt a i915.enable_psr=0 kernel cmd optiony
+- asi kvůli zakázání akcelerace (nebo DRI 2) se teď xorg laguje (jakoby nižší framerate)
+TOHLE FUNGOVALO (asi - 5 hodin se nic nestalo)
+- teď to zkusím bez vypnuti akcelerace, abych se zbavil lagů
+OK, TED MI TO BEZI
+- zkusim zapnout compositor
+
+koukám sem, ale nevypadá to moc slibně
+https://www.reddit.com/r/linuxhardware/comments/8o7m2t/how_to_figure_out_random_linux_freezes_on_dell/
+
+další věc, co bych mohl vyzkoušet: odinstalovat xf86
+- automaticky by ho měl zastoupit modesetting driver, který je prý lepší
+https://www.reddit.com/r/voidlinux/comments/dxuw4m/how_do_i_change_from_xf86videointel_to_the/
+https://www.reddit.com/r/archlinux/comments/6am55w/is_xf86videointel_still_needed/
+
+grafiku mám intel uhd 620 - možná najdu něco ohledně ní a driverů
+
+nainstaloval jsem taky xfce4-notifyd, aby libnotify měla přes co zobrazovat notifikace
+
+na voidu člověk musí nainstalovat balíček "man-pages-devel", jinak nemá věci jako
+"man syscalls"
+
+dotnet jsem nainstaloval pomocí dotnet install scriptu a udělal jsem si link ~/bin/dotnet -> ~/.dotnet/dotnet
+https://docs.microsoft.com/en-us/dotnet/core/install/linux-scripted-manual#scripted-install
+
+ugh snižování a zvyšování backlightu bude těžké
+nejde to udělat pomocí sxhkd, jelikož brightness up a down se vůbec neregistrují
+možná byc to šlo udělat pomocí acpi eventů, ale to mi taky nefunguje
+zatím jsem nainstaloval acpid a acpi a v /etc/acpi jsem udělal nějaký skript
+https://unix.stackexchange.com/questions/322814/xf86monbrightnessup-xf86monbrightnessdown-special-keys-not-working
+xbacklight -dec 15 (backlight mám nainstalovaný jako dependency polybaru)
+
+
+právě jsem něco nainstaloval přes void-packages! (zoom)
+https://docs.voidlinux.org/xbps/repositories/restricted.html
+https://github.com/void-linux/void-packages#quick-start
+
+
+1.4.
+
+Instaluji Haskell přes GHCUP
+- Nainstaloval jsem kvůli tomu libncurses-dev

@@ -1,0 +1,47 @@
+#!/bin/bash
+
+set -ueo pipefail
+
+# Resources on msim and docker:
+# https://d3s.mff.cuni.cz/teaching/nswi004/toolchain/
+# https://d3s.mff.cuni.cz/teaching/nswi177/202021/labs/13/
+
+
+print_usage() {
+    echo "Script that will connect cwd to docker image with MIPS R4000 \"msim\""
+    echo "simulator and run the specified command on it"
+    echo "Writen by pheeck for the MFF NSWI004 Operating Systems course"
+    echo
+    echo "Usage:"
+    echo
+    echo "mips-container cmd arg1 arg2 arg3 ..."
+    echo "Run cmd with arguments arg1 arg2 arg3 ..."
+    echo
+    echo "mips-container --help"
+    echo "Print this message"
+}
+
+
+if [ $# -lt 1 ]; then
+    echo "Error: Missing command" >&2
+    echo >&2
+    print_usage >&2
+    exit 1
+fi
+
+if [ "$1" == "--help" ] || [ "$1" == "-h" ]; then
+    print_usage >&2
+    exit 0
+fi
+
+args="$@"
+
+# the order of the arguments matters
+# https://stackoverflow.com/questions/27158840/docker-executable-file-not-found-in-path
+sudo docker run \
+    --rm \
+    --memory=256m --memory-swap=512m \
+    -v "$( pwd )":/root/nswi004:rw \
+    -it \
+    registry.gitlab.com/mffd3s/nswi004/mips32:latest \
+    /bin/bash -c "cd /root/nswi004 && $args"

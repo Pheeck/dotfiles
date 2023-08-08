@@ -1,0 +1,12 @@
+$include /etc/inputrc
+
+# Make shell use vi-mode and display current input mode with different cursors
+set editing-mode vi
+set show-mode-in-prompt on
+set vi-ins-mode-string \1\e[6 q\2
+set vi-cmd-mode-string \1\e[2 q\2
+
+# When pressing enter, go to normal mode first (\e), then run the command (\n)
+set keymap vi-insert
+RETURN: "\e\n"
+"\C-j": "\e\n"

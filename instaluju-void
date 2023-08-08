@@ -1,0 +1,53 @@
+- Flashku jsem nejdřív zformátoval GPT, vfat, ale pak jsem na ní prostě pomocí
+  dd bs=4M if=path/to/archlinux-version-x86_64.iso of=/dev/sdx conv=fsync oflag=direct status=progress
+  zkopíroval void linux iso
+- Windows nukenu. Prý až budu zase instalovat windows, tak pokud použiju tu
+  stejnou edici, budu moct použít "I am Reinstalling Windows 10 on this PC" a
+  na Microsoft serverech se najde, že tenhle počítač opravdu už windows 10 měl
+  https://answers.microsoft.com/en-us/windows/forum/all/windows-activation-after-having-a-different-os/eddced99-1156-414c-9d3e-b54d3f93da07
+
+mám 238,46 GiB = 244183,04 MiB = 250043432,96 KiB
+budu chtít 500mb EFI partition, 4gb swap
+
+500mb EFI
+100gb volno pro windows
+50gb /
+50gb /home
+30gb share
+4gb swap
+
+- Void linux docs říkají, že kdybych chtěl hibernovat, budu potřebovat 12gb, ale
+  na to kašlu
+- Co je cz-lat2-prog klávesnice?
+- Wifi připojení přes void-installer nefungovalo, kabel taky nic, ale
+  rozchodil jsem to přes wpa_supplicant
+  https://unix.stackexchange.com/questions/531071/how-to-connect-with-wifi-during-void-linux-installation
+wpa_passphrase SSID PASSWORD >> /etc/wpa_supplicant/wpa_supplicant-wlp2s0.conf
+wpa_supplicant -B -iwlp2s0 -c/etc/wpa_supplicant/wpa_supplicant-wlp2s0.conf
+
+- Odted je moje goto password to, co jsem měl minulý rok na SISu, ale s
+  vykricnikem za prvnim slovem
+- Musel jsem si ručně nastavit čas pomocí "date" commandu, protože nefungoval
+  xbps
+- "xcheckrestart" mi zkontroluje, jestli programy po updatu nepoužívají staré
+  verze knihoven (a asi zároveň services)
+  - je to v "xtools" packagi
+
+patrik doporučuje "opendoas" - lightweight alternativa k sudo
+
+- Nainstaloval jsem nonfree balíček "intel-ucode" (mikrokód) a regeneroval
+  initramfs
+- Nainstaloval jsem "cronie" a enablenul jsem jeho service
+- Nastavil jsem u ext4 partitionů SSD TRIM - crontab, každý týden "fstrim /"
+  - Tedy v crontabu jsem nastavil
+- Nainstaloval jsem "ntp" na synchronizaci času a enablenul jsem service
+
+TODO: nainstalovat tlp a zařídit, aby se notebook uspával
+
+- Nainstaloval jsem a enablenul NetworkManager
+  https://docs.voidlinux.org/config/network/networkmanager.html
+- Nainstaloval jsem, co mi řekli tady
+  https://docs.voidlinux.org/config/graphical-session/graphics-drivers/intel.html
+- Nainstaloval jsem "xorg" balíček
+  https://docs.voidlinux.org/config/graphical-session/xorg.html
+- Budu asi spouštět xorg pomocí xinitu - příkaz "startx" a konfigurák ~/.xinitrc

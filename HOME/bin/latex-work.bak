@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -ueo pipefail
+
+
+texName="$1"
+baseName=$( printf "$texName" | cut -d . -f 1 )
+pdfName="$baseName".pdf
+
+pdflatex "$texName"
+nohup evince "$pdfName" >/dev/null 2>/dev/null &
+latexmk -pdf -pvc "$texName"
+latexmk -c

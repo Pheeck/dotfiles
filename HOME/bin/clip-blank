@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# https://emptycharacter.com/
+
+printf "\xe2\x80\x8e" | xclip -sel clip

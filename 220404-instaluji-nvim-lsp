@@ -1,0 +1,12 @@
+22/04/04
+
+- Nejdřív chci nainstalovat vimplug
+https://github.com/junegunn/vim-plug
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+- To mi hodí plug.vim do ~/.local/share/site/autoload
+- Dokud nedáš do tvého vim konfiguráku (mám nastavené, že nvim žere i ~/.vimrc)
+  call plug#begin() ... call plug#end() (klidně prázdné), tak nebudou dostupné
+  VimPlug příkazy
+- Nvim podporuje pluginy sám od sebe -- ale VimPlug ti je bude spravovat a
+  updatovat

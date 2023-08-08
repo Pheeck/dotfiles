@@ -1,0 +1,5 @@
+Instloval jsem MinionPro .otf font (.ttf jsou to samé)
+- Udělal jsem složku ~/.local/share/fonts/MinionPro
+- Nakopíroval tam všechny .otf soubory
+- Příkaz "fc-cache"
+- Hotovo, Gimp font uměl

@@ -1,0 +1,65 @@
+partial default alphanumeric_keys
+xkb_symbols "basic" {
+     
+    //Basicaly clasic layout but with czech symbols when holding alt    
+    
+    include "latin"
+
+    name[Group1]= "Programmer Czech Pheeck";
+
+    key <AE02>	{ [         2,         at,       ecaron,       Ecaron ]	};
+    key <AE03>	{ [         3, numbersign,       scaron,       Scaron ]	};
+    key <AE04>	{ [         4,     dollar,       ccaron,       Ccaron ]	};
+    key <AE05>	{ [         5,    percent,       rcaron,       Rcaron ]	};
+    key <AE06>	{ [         6,asciicircum,       zcaron,       Zcaron ]	};
+    key <AE07>	{ [         7,  ampersand,       yacute,       Yacute ]	};
+    key <AE08>	{ [         8,   asterisk,       aacute,       Aacute ]	};
+    key <AE09>	{ [         9,  parenleft,       iacute,       Iacute ]	};
+    key <AE10>	{ [         0, parenright,       eacute,       Eacute ]	};
+
+    key <AE12>	{ [    equals,       plus,   dead_acute,   dead_caron ]	};
+
+    key <AD11>  { [bracketleft, braceleft,       uacute,       Uacute ] };
+
+    key <AC10>  { [ semicolon,      colon,        uring,        Uring ] };
+    //Upcoming classic gb binds
+    key <TLDE>	{ [     grave,    notsign,          bar,          bar ]	};
+
+    key <BKSL>	{ [numbersign, asciitilde,   dead_grave,   dead_breve ]	};
+    key <LSGT>	{ [ backslash,        bar,          bar,    brokenbar ]	};
+
+    include "level3(ralt_switch)" 
+};
+
+//Mac version
+partial alphanumeric_keys
+xkb_symbols "mac" {
+
+    // The same thing but for mac
+
+    include "latin"
+
+    name[Group1]= "Programmer Czech Mac Pheeck";
+
+    key <AE02>	{ [         2,         at,       ecaron,       Ecaron ]	};
+    key <AE03>	{ [         3, numbersign,       scaron,       Scaron ]	};
+    key <AE04>	{ [         4,     dollar,       ccaron,       Ccaron ]	};
+    key <AE05>	{ [         5,    percent,       rcaron,       Rcaron ]	};
+    key <AE06>	{ [         6,asciicircum,       zcaron,       Zcaron ]	};
+    key <AE07>	{ [         7,  ampersand,       yacute,       Yacute ]	};
+    key <AE08>	{ [         8,   asterisk,       aacute,       Aacute ]	};
+    key <AE09>	{ [         9,  parenleft,       iacute,       Iacute ]	};
+    key <AE10>	{ [         0, parenright,       eacute,       Eacute ]	};
+
+    key <AE12>	{ [    equals,       plus,   dead_acute,   dead_caron ]	};
+
+    key <AD11>  { [bracketleft, braceleft,       uacute,       Uacute ] };
+
+    key <AC10>  { [ semicolon,      colon,        uring,        Uring ] };
+    //Upcoming classic gb binds
+    key <TLDE> {	[         section,       plusminus ]	};
+    key <LSGT> {	[           grave,      asciitilde ]	};
+
+    include "level3(ralt_switch)"
+    include "level3(enter_switch)"
+};

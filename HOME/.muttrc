@@ -1,0 +1,254 @@
+#########
+# LUKAS #
+#########
+
+#unmy_hdr from
+my_hdr From: # FILL IN
+ignore *
+unignore from: reply-to date subject to cc
+unignore organization x-mailer: x-newsreader: x-mailing-list:
+unignore posted-to: User-Agent:
+unignore X-Bugzilla-Status: X-Bugzilla-Priority: X-Bugzilla-Reason:
+unignore Message-Id:
+
+set folder=imaps:// # FILL IN
+set spoolfile=imaps:// # FILL IN
+set postponed=imaps:// # FILL IN
+set record=imaps:// # FILL IN
+
+account-hook . "unset imap_user; unset imap_pass; unset tunnel"
+account-hook . 'set mail_check=90; set timeout=15'
+account-hook imaps://FILL IN 'set imap_user=# FILL IN; set imap_pass=" FILL IN"'
+
+mailboxes = \
+    imaps://# FILL IN /INBOX \
+    imaps://# FILL IN /sent
+
+set header_cache=~/Mail/Cache/
+set message_cachedir=~/Mail/Cache/
+
+# use very high $read_inc to speed up reading hcache'd maildirs
+folder-hook . 'set read_inc=1000'
+
+set imap_qresync=yes
+
+#set maildir_header_cache_verify=no
+
+alternative_order text/calendar text/ics text/plain text/html
+auto_view text/html text/calendar text/ics
+unhdr_order *
+hdr_order From: To: Cc: From Subject: Date:
+
+set edit_headers=yes
+#set editor="LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8 vim -c 'source ~/.vimrc.mail' %s"
+#set editor="LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8 vim %s"
+set editor="nvim %s"
+set auto_tag=no
+set autoedit
+set charset=utf-8
+set copy=yes
+set date_format="%a %Y-%m-%d %H:%M:%S"
+set delete=yes
+set forw_format="%s (fwd)"
+set hdr_format="%4C %Z %[%Y-%m-%d] %[%H:%M] %-16.16L (%4l) %s"
+set hidden_host=yes
+set move=no
+set noconfirmappend
+set pager_index_lines=0
+set pager_stop
+set print_command=kprinter
+set reply_to=ask-yes
+set reverse_alias
+set save_empty=yes
+set sort=threads
+set sort_aux=last-date-received
+set status_format="---%h:%f [%M %nN %tT %dD %lB]%>-%v---"
+set envelope_from=yes
+set pager_context=4
+set abort_nosubject=no
+set abort_unmodified=yes
+set smart_wrap=yes
+set tilde=yes
+set menu_scroll=yes
+set rfc2047_parameters=yes
+set metoo=no
+set pager_index_lines=10
+set pager_stop=yes
+set mime_forward_rest=yes
+set mime_forward=ask-no
+set quit=ask-yes
+set mailcap_path="~/.mutt/mailcap"
+
+
+#macro pager \cp "v<pipe-message> LANGUAGE="ANSI" LC_ALL="ANSI" LANG="ANSI" colordiff 2>/dev/null|less<enter>q"
+#macro attach \cp "<pipe-message> LANGUAGE="ANSI" LC_ALL="ANSI" LANG="ANSI" colordiff 2>/dev/null|less<enter>"
+#macro index <ESC>f "<search>~F<enter>"
+
+#macro index <ESC>s "T ~h \"X-Spam-Flag: YES\"<enter>"
+
+#set sidebar_visible=no
+#bind index,pager <ESC>a sidebar-prev
+#bind index,pager <ESC>s sidebar-next
+#bind index,pager \ca sidebar-prev
+#bind index,pager \cx sidebar-next
+#bind index,pager <esc><up> sidebar-prev
+#bind index,pager <esc><down> sidebar-next
+##bind index,pager \c<enter> sidebar-open
+#bind index,pager <ESC>o sidebar-open
+#macro pager <ESC>o "<sync-mailbox><toggle-write><sidebar-open>"
+#macro index,pager l "<enter-command>source ~/.smtp_relay<enter>"
+
+set sidebar_visible=yes
+set sidebar_width=35
+set mail_check = 30
+set check_new = yes
+set check_mbox_size = yes
+set mail_check_stats = yes
+set mail_check_stats_interval = 30
+
+#set sidebar_format = '%B%?F? [%F]?%* %?N?%N/?%S'
+#set sidebar_format = '%B% %* %?N?%N/?%S'
+set sidebar_format = '%B% %* %?N?%N/?%S'
+set sidebar_delim_chars = '/.'
+set sidebar_new_mail_only = no
+
+# Color of the current, open, mailbox
+# Note: This is a general Mutt option which colors all selected items.
+color indicator color199 color234
+
+# Color of the highlighted, but not open, mailbox.
+color sidebar_highlight color200 color234
+
+# Color of the divider separating the Sidebar from Mutt panels
+color sidebar_divider color8 color234
+
+# Color to give mailboxes containing flagged mail
+color sidebar_flagged color176 color234
+
+# Color to give mailboxes containing new mail
+color sidebar_new color176 color234
+
+# Color to give mailboxes containing no new/flagged mail, etc</emphasis>
+#color sidebar_ordinary color241 color234
+
+#bind index "G"  imap-fetch-mail
+#
+#bind index,pager <ECS><TAB> previous-new-then-unread
+#bind pager <backspace> previous-line
+#bind pager <delete> previous-line
+#bind pager J next-line
+#bind pager K previous-line
+#bind index,pager <alt>j sidebar-next
+#bind index,pager <alt>k sidebar-prev
+#bind index,pager <alt><enter> sidebar-open
+
+set alias_file=~/.muttrc.aliases
+
+#source ~/.muttrc.aliases
+#source ~/.muttrc.gpg
+source ~/.muttrc.colors
+#source ~/.muttrc.hooks
+#set signature="~/.signature"
+
+set sendmail="/usr/bin/msmtp -a ..." # FILL IN
+
+set allow_ansi=yes
+
+
+##########
+# CUSTOM #
+##########
+
+set sort = reverse-date-received
+
+# Keybindings and macros {{{1
+# https://www.reddit.com/r/vim/comments/67n8ue/vimmy_custom_keybindings_for_mutt/dgrynw0/
+# ---------------------------
+
+# alias   - alias menu displaying suggested aliases
+# browser - file/directory browser
+# editor  - single line editor for `To:', `Subject:' prompts.
+# index   - the main menu showing messages in a folder
+# pager   - where the contents of the message are displayed
+# query   - menu displaying results of query command
+
+# Unbind some defaults.
+bind index <esc>V noop
+bind index <esc>v noop
+bind index \Cn noop
+bind index \Cp noop
+
+bind alias,index,browser,query G last-entry
+bind pager G bottom
+
+bind alias,index,browser,query gg first-entry
+bind pager gg top
+
+bind alias,index,pager,browser,query \Cd half-down
+bind alias,index,pager,browser,query \Cu half-up
+
+bind index <esc><space> collapse-all
+bind index <space> collapse-thread
+
+bind index n search-next
+bind index p search-opposite
+
+bind index { previous-thread
+bind pager { half-up
+
+bind index } next-thread
+bind pager } half-down
+
+bind index,pager A create-alias
+bind index,pager a group-reply
+
+# Skip trash when deleting with the delete key.
+bind index,pager <delete> purge-message
+
+# Readline-like history browsing using up/down keys.
+bind editor \Cp history-up
+bind editor \Cn history-down
+
+# Convenient macros to switch between common folders.  Also tells me what other
+# folders have new mail once I make a switch.
+macro index,pager gd "<change-folder>$postponed<enter><buffy-list>" "open drafts"
+macro index,pager gi "<change-folder>$spoolfile<enter><buffy-list>" "open inbox"
+macro index,pager gj "<change-folder>+spam<enter><buffy-list>"      "open junk mail (spam)"
+macro index,pager gr "<change-folder>^<enter><buffy-list>"          "refresh folder"
+macro index,pager gs "<change-folder>$record<enter><buffy-list>"    "open sent mail"
+macro index,pager gt "<change-folder>$trash<enter><buffy-list>"     "open trash"
+
+# I use this whenever I know that a folder hook is acting and I just want the
+# message to go to the default save folder.
+macro index,pager I "<save-message><enter>" "save message to default folder without confirming"
+
+# Limit messages quickly using ' + key.
+macro index \'d  "<limit>~D<enter>"       "limit to deleted messages"
+macro index \'f  "<limit>~F<enter>"       "limit to flagged messages"
+macro index \'l  "<limit>~=<enter>"       "limit to duplicate messages"
+macro index \'n  "<limit>~N|~O<enter>"    "limit to new messages"
+macro index \'p  "<limit>~g|~G<enter>"    "limit to signed or encrypted messages"
+macro index \'u  "<limit>!~Q<enter>"      "limit to unreplied messages"
+macro index \'\' "<limit>~A<enter>"       "reset all limits"
+
+# If +spam doesn't exist, mutt will create it for us.
+macro index S "<save-message>+spam<enter>" "mark message as spam"
+
+# Toggle the mailbox list with "y".
+macro index,pager y "<change-folder>?<toggle-mailboxes>" "show incoming mailboxes list"
+bind browser y exit
+
+# Call urlview with gx
+macro index,pager,attach,compose gx                                             \
+  "<enter-command>set my_pipe_decode=\$pipe_decode pipe_decode<Enter>           \
+  <pipe-message>urlview<Enter>                                                  \
+  <enter-command>set pipe_decode=\$my_pipe_decode; unset my_pipe_decode<Enter>" \
+  "call urlview to extract URLs out of a message"
+
+# Pipe message to pbcopy with Ctrl + Y.  pipe_decode will ensure that
+# unnecessary headers are removed and the message is processed.
+macro index,pager,attach,compose \cy                                            \
+  "<enter-command>set my_pipe_decode=\$pipe_decode pipe_decode<Enter>           \
+  <pipe-message>pbcopy<Enter>                                                   \
+  <enter-command>set pipe_decode=\$my_pipe_decode; unset my_pipe_decode<Enter>" \
+  "copy message to clipboard using mutt-pbcopy"

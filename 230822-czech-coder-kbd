@@ -1,0 +1,2 @@
+https://github.com/michalkahle/czech-coder-xkb
+setxkbmap -layout cz -variant coder

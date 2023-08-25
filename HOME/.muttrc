@@ -13,8 +13,8 @@ unignore Message-Id:
 
 set folder=imaps:// # FILL IN
 set spoolfile=imaps:// # FILL IN
-set postponed=imaps:// # FILL IN
-set record=imaps:// # FILL IN
+set postponed=imaps:// # FILL IN /INBOX/Posponed
+set record=imaps:// # FILL IN /INBOX/Sent
 
 account-hook . "unset imap_user; unset imap_pass; unset tunnel"
 account-hook . 'set mail_check=90; set timeout=15'
@@ -22,7 +22,7 @@ account-hook imaps://FILL IN 'set imap_user=# FILL IN; set imap_pass=" FILL IN"'
 
 mailboxes = \
     imaps://# FILL IN /INBOX \
-    imaps://# FILL IN /sent
+    imaps://# FILL IN /INBOX/Sent
 
 set header_cache=~/Mail/Cache/
 set message_cachedir=~/Mail/Cache/

@@ -160,6 +160,7 @@ set allow_ansi=yes
 ##########
 
 set sort = reverse-date-received
+set send_charset = "utf-8" # So that sent patches are applicable
 
 # Keybindings and macros {{{1
 # https://www.reddit.com/r/vim/comments/67n8ue/vimmy_custom_keybindings_for_mutt/dgrynw0/

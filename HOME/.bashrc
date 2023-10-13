@@ -4,6 +4,7 @@
 [[ $- != *i* ]] && return
 
 alias ls='ls --color=auto'
+alias vim="nvim"
 #PS1='[\u@\h \W]\$ '
 #PS1='\e[1;32m[\u@\h \e[1;34m\W\e[1;32m]\$\e[0;0m '  # The same thing but with colors
 # The same thing but word wrapping is fixed

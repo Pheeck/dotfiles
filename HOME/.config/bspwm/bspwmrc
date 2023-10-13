@@ -25,3 +25,4 @@ feh --bg-center $HOME/Documents/wallpaper.png
 picom &
 nm-applet &
 redshift -l 50.08:14.42 &
+setxkbmap -layout cz -variant coder

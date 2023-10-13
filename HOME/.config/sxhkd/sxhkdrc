@@ -147,3 +147,10 @@ Print
 
 super + {_, shift + }e
 	bspc node '@parent' -R {_,-}90
+
+#
+# CUSTOM screen lock
+#
+
+super + z
+	xflock4

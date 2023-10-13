@@ -60,8 +60,6 @@ set print_command=kprinter
 set reply_to=ask-yes
 set reverse_alias
 set save_empty=yes
-set sort=threads
-set sort_aux=last-date-received
 set status_format="---%h:%f [%M %nN %tT %dD %lB]%>-%v---"
 set envelope_from=yes
 set pager_context=4
@@ -159,7 +157,8 @@ set allow_ansi=yes
 # CUSTOM #
 ##########
 
-set sort = reverse-date-received
+set sort = threads
+set sort_aux = reverse-date-received
 set send_charset = "utf-8" # So that sent patches are applicable
 
 # Keybindings and macros {{{1

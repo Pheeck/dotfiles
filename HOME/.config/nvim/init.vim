@@ -26,6 +26,7 @@ set splitright
 set splitbelow
 set tw=79
 set nohidden
+set mouse=
 
 "VimPlug
 "Install with this:

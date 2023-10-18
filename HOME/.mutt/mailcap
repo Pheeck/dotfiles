@@ -1,0 +1,4 @@
+# https://github.com/dmedvinsky/mutt-ics
+# zypper install python311-mutt-ics
+text/calendar; mutt-ics; copiousoutput
+application/ics; mutt-ics; copiousoutput

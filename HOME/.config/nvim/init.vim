@@ -43,4 +43,4 @@ set wildmenu
 
 "Colors
 set notermguicolors t_Co=16
-colorsheme vim
+colorscheme vim

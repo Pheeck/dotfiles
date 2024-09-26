@@ -32,11 +32,15 @@ set mouse=
 "Install with this:
 "curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 "    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-call plug#begin('~/.local/share/nvim/plugged/')
-Plug 'preservim/nerdtree'
-call plug#end()
+"call plug#begin('~/.local/share/nvim/plugged/')
+"Plug 'preservim/nerdtree'
+"call plug#end()
 
 "Bash-like file name autocompletion
 "https://stackoverflow.com/a/526940
 set wildmode=longest,list,full
 set wildmenu
+
+"Colors
+set notermguicolors t_Co=16
+colorsheme vim

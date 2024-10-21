@@ -5,13 +5,15 @@
 
 alias ls='ls --color=auto'
 alias vim="nvim"
+
+# Safe rm
+alias rm='rm -i'
+
 #PS1='[\u@\h \W]\$ '
 #PS1='\e[1;32m[\u@\h \e[1;34m\W\e[1;32m]\$\e[0;0m '  # The same thing but with colors
 # The same thing but word wrapping is fixed
 # https://unix.stackexchange.com/questions/105958/terminal-prompt-not-wrapping-correctly
 PS1='\[\e[1;32m\][\u@\h \[\e[1;34m\]\W\[\e[1;32m\]]\$\[\e[0;0m\] '
-
-alias rm='rm -i'
 
 # Set neovim as default editor
 export EDITOR="nvim"

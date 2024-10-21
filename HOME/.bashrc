@@ -11,6 +11,8 @@ alias vim="nvim"
 # https://unix.stackexchange.com/questions/105958/terminal-prompt-not-wrapping-correctly
 PS1='\[\e[1;32m\][\u@\h \[\e[1;34m\]\W\[\e[1;32m\]]\$\[\e[0;0m\] '
 
+alias rm='rm -i'
+
 # Set neovim as default editor
 export EDITOR="nvim"
 export VISUAL="nvim"

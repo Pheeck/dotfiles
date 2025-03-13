@@ -15,9 +15,9 @@ done
 tmp1=$( mktemp )
 tmp2=$( mktemp )
 cd bin
-find > "$tmp1"
+find | sort > "$tmp1"
 cd ~/bin
-find > "$tmp2"
+find | sort > "$tmp2"
 
 if ! diff "$tmp1" "$tmp2"; then
     echo

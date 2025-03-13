@@ -5,6 +5,7 @@
 
 alias ls='ls --color=auto'
 alias vim="nvim"
+alias python="python3"
 
 # Safe rm
 alias rm='rm -i'

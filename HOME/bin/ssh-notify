@@ -1,0 +1,2 @@
+ssh $@
+notify-send "$@ DONE" -t 1000000

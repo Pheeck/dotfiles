@@ -11,3 +11,17 @@ for file in $( find -type f ); do
         echo
     fi
 done
+
+tmp1=$( mktemp )
+tmp2=$( mktemp )
+cd bin
+find > "$tmp1"
+cd ~/bin
+find > "$tmp2"
+
+if ! diff "$tmp1" "$tmp2"; then
+    echo
+    echo Some scripts are missing
+    echo
+    echo
+fi

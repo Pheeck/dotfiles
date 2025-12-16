@@ -44,3 +44,37 @@ set wildmenu
 "Colors
 set notermguicolors t_Co=16
 colorscheme vim
+
+
+"""""""
+" LSP "
+"""""""
+
+lua << EOF
+require('lspconfig').rust_analyzer.setup({
+  settings = {
+    ["rust-analyzer"] = {
+      checkOnSave = {
+	enable = true,
+        command = "clippy"
+      }
+    }
+  }
+})
+require('lspconfig').clangd.setup({
+})
+EOF
+
+nnoremap <C-k> :lua vim.diagnostic.open_float()<CR>
+nnoremap <C-l> :lua vim.diagnostic.goto_next()<CR>
+nnoremap <C-h> :lua vim.diagnostic.goto_prev()<CR>
+
+"https://vi.stackexchange.com/questions/43428/how-to-disable-lsp-server-syntax-highlighting
+lua << EOF
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    client.server_capabilities.semanticTokensProvider = nil
+  end,
+});
+EOF

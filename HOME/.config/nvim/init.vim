@@ -51,7 +51,8 @@ colorscheme vim
 """""""
 
 lua << EOF
-require('lspconfig').rust_analyzer.setup({
+vim.lsp.enable('rust_analyzer')
+vim.lsp.config('rust_analyzer', {
   settings = {
     ["rust-analyzer"] = {
       checkOnSave = {
@@ -61,7 +62,8 @@ require('lspconfig').rust_analyzer.setup({
     }
   }
 })
-require('lspconfig').clangd.setup({
+vim.lsp.enable('clangd')
+vim.lsp.config('clangd', {
 })
 EOF
 

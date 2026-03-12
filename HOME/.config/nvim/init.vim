@@ -77,6 +77,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     local client = vim.lsp.get_client_by_id(args.data.client_id)
     client.server_capabilities.semanticTokensProvider = nil
+    -- Disable LSP formatting for this buffer
+    -- vim.bo[args.buf] targets the specific buffer the LSP just attached to
+    -- This was suggested by the Gemini LLM to me
+    vim.bo[args.buf].formatexpr = ""
   end,
 });
 EOF

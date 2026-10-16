@@ -1,0 +1,27 @@
+Cíl: Umožnit nastavení czech coder klávesnice přes XFCE gui. Je potřeba použít
+XFCE GUI místo setxkbmap -layout cz -variant coder, protože jinak XFCE po
+nějaké době layout přenastaví.
+
+Postup:
+1. Po vzoru evdev.xml a base.{xml,lst} uprav tyto tři soubory v
+   /usr/share/X11/xkb/rules/
+2. Restartuj XFCE
+
+Proč:
+layout "coder" sice existuje v /usr/share/X11/xkb/symbols/cz, ale chybí v ev
+
+
+----
+
+
+        <variant>
+          <configItem>
+            <name>coder</name>
+            <description>Czech Coder</description>
+          </configItem>
+        </variant>
+
+
+----
+
+  coder           cz: Czech Coder
